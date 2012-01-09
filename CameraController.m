@@ -51,11 +51,11 @@ struct CameraControlDef {
 	CameraValueSign_t sign;   /* Sign of the values in cur,min,max,def reqs. */
 } cameraControlDefs[] = {
     {
-		CamPar_Brightness,	        
+		CamPar_Brightness,
 		UVC_VC_PROCESSING_UNIT,
-		UVC_PU_BRIGHTNESS_CONTROL,  
-		2,                          
-		CamPar_SignedNr,            
+		UVC_PU_BRIGHTNESS_CONTROL,
+		2,
+		CamPar_SignedNr,
 	},
 };
 
@@ -66,7 +66,7 @@ struct CameraControlDef {
 	IOUSBDevRequest req;
 	IOReturn res;
 	long value = 0l;
-	
+
 	CameraControlDef_t ctrlDef = cameraControlDefs[control];
 
 	UInt8 uvcSelector = (selector==CamPar_Min     ? UVC_GET_MIN:
@@ -78,7 +78,7 @@ struct CameraControlDef {
 	UInt8 unitID = (ctrlDef.unit == UVC_VC_PROCESSING_UNIT ? processingUnitID :
 					(ctrlDef.unit == UVC_VC_INPUT_TERMINAL ? cameraTerminalID :
 					 0)); /* Error */
-	
+
 	// Direction: incoming - kUSBIn
 	// Type: generic request for this Class of devices - kUSBClass
 	// Directed to the VideoControl interface - kUSBInterface
@@ -96,7 +96,7 @@ struct CameraControlDef {
 			  mach_error_string(res));
 		return 0l;
 	}
-	
+
 	if (ctrlDef.sign == CamPar_SignedNr)
 	{
 		value = (ctrlDef.length == 1 ? (SInt8)value:
@@ -117,7 +117,7 @@ struct CameraControlDef {
 	UInt8 unitID = (ctrlDef.unit == UVC_VC_PROCESSING_UNIT ? processingUnitID :
 					(ctrlDef.unit == UVC_VC_INPUT_TERMINAL ? cameraTerminalID :
 					 0)); /* Error */
-	
+
 	// Direction: outgoing - kUSBOut
 	// Type: generic request for this Class of devices - kUSBClass
 	// Directed to the VideoControl interface - kUSBInterface
@@ -143,7 +143,7 @@ struct CameraControlDef {
 -(void)findUnitAndTerminalIds:(IOUSBDeviceInterface **)deviceInterface
 {
 	/* Find the Terminal and Unit Descriptors.
-	 
+
 	 Example bus probe for the iSight camera:
 	 VDC (Control) Input Terminal
 	 Length (and contents): 18
@@ -202,17 +202,17 @@ struct CameraControlDef {
 				intHdrDesc->wTotalLength = USBToHostWord(intHdrDesc->wTotalLength);
 				intHdrDesc->bcdUVC = USBToHostWord(intHdrDesc->bcdUVC);
 				intHdrDesc->dwClockFrequency = USBToHostLong(intHdrDesc->dwClockFrequency);
-				
+
 				int vc_remaining = intHdrDesc->wTotalLength - desclt->bLength;
 				ptr += desclt->bLength;
 				remaining -= intHdrDesc->wTotalLength;
-				
+
 				while (vc_remaining>0)
 				{
 					desclt = (UVC_InterfaceDescriptorHdr_t*)ptr;
 					if (desclt->bDescriptorType != UVC_CS_INTERFACE)
 						break; // problem, should be CS_INTERFACE.
-					
+
 					if (desclt->bDescriptorSubType == UVC_VC_PROCESSING_UNIT)
 					{
 						processingUnitID =
@@ -232,7 +232,7 @@ struct CameraControlDef {
 				remaining -= desclt->bLength;
 				ptr += desclt->bLength;
 			}
-			
+
 			/* We have what we needed, stop parsing and bail out. */
 			break;
 		}
