@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'isight' target in the 'isight' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
