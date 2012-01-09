@@ -28,6 +28,22 @@ QTCaptureSession           *captureSession;
 CameraController *cameraCtrl;
 BOOL cameraConfigured = FALSE;
 
+/**
+ * initSlider: initiate the slider with the Minimum, Maximum and Current value
+ *  for the selected control (brightness, contrast...).
+ */
+- (void) initSlider:(NSSlider *)slider control:(CameraControl_t)control
+{
+	long value;
+
+	value = [cameraCtrl getValue:control selector:CamPar_Min];
+	[slider setMinValue:value];
+	value = [cameraCtrl getValue:control selector:CamPar_Max];
+	[slider setMaxValue:value];
+	value = [cameraCtrl getValue:control selector:CamPar_Current];
+	[slider setIntValue:value];
+}
+
 - (void) awakeFromNib
 {
 	[lbl setStringValue:@""];
@@ -67,26 +83,8 @@ BOOL cameraConfigured = FALSE;
 	}
 
 	/* Initialize ranged controls. */
-
-	/* TODO: cleanup after initial tests. */
-	long value;
-	value = [cameraCtrl getValue:CamPar_Brightness selector:CamPar_Min];
-	[brightnessSlider setMinValue:value];
-	value = [cameraCtrl getValue:CamPar_Brightness selector:CamPar_Max];
-	[brightnessSlider setMaxValue:value];
-	value = [cameraCtrl getValue:CamPar_Brightness selector:CamPar_Current];
-	[brightnessSlider setIntValue:value];
-#if 0
-	value = [cameraCtrl getValue:CamPar_Brightness selector:CamPar_Default];
-	value = [cameraCtrl getValue:CamPar_Brightness selector:CamPar_Resolution];
-#endif
-
-	value = [cameraCtrl getValue:CamPar_Contrast selector:CamPar_Min];
-	[contrastSlider setMinValue:value];
-	value = [cameraCtrl getValue:CamPar_Contrast selector:CamPar_Max];
-	[contrastSlider setMaxValue:value];
-	value = [cameraCtrl getValue:CamPar_Contrast selector:CamPar_Current];
-	[contrastSlider setIntValue:value];
+	[self initSlider:brightnessSlider control:CamPar_Brightness];
+	[self initSlider:contrastSlider control:CamPar_Contrast];
 
 	[lbl setStringValue:@"Initialized"];
 }
