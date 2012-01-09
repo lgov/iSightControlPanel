@@ -57,6 +57,13 @@ struct CameraControlDef {
 		2,
 		CamPar_SignedNr,
 	},
+    {
+		CamPar_Contrast,
+		UVC_VC_PROCESSING_UNIT,
+		UVC_PU_CONTRAST_CONTROL,
+		2,
+		CamPar_UnsignedNr,
+	},
 };
 
 /* Send GET_CUR,GET_MIN;GET_MAX,GET_RES,GET_LEN,GET_INFO or GET_DEF request to

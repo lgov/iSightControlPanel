@@ -76,17 +76,33 @@ BOOL cameraConfigured = FALSE;
 	[brightnessSlider setMaxValue:value];
 	value = [cameraCtrl getValue:CamPar_Brightness selector:CamPar_Current];
 	[brightnessSlider setIntValue:value];
+#if 0
 	value = [cameraCtrl getValue:CamPar_Brightness selector:CamPar_Default];
 	value = [cameraCtrl getValue:CamPar_Brightness selector:CamPar_Resolution];
+#endif
+
+	value = [cameraCtrl getValue:CamPar_Contrast selector:CamPar_Min];
+	[contrastSlider setMinValue:value];
+	value = [cameraCtrl getValue:CamPar_Contrast selector:CamPar_Max];
+	[contrastSlider setMaxValue:value];
+	value = [cameraCtrl getValue:CamPar_Contrast selector:CamPar_Current];
+	[contrastSlider setIntValue:value];
 
 	[lbl setStringValue:@"Initialized"];
 }
 
-- (IBAction)setSlider:(id)sender
+- (IBAction)setBrightness:(id)sender
 {
 	int brightness = [brightnessSlider intValue];
-	long value = [cameraCtrl setValue:brightness
-					          control:CamPar_Brightness];
+	[cameraCtrl setValue:brightness
+				 control:CamPar_Brightness];
+}
+
+- (IBAction)setContrast:(id)sender
+{
+	int contrast = [contrastSlider intValue];
+	[cameraCtrl setValue:contrast
+				 control:CamPar_Contrast];
 }
 
 - (void)windowWillClose:(NSNotification *)notification

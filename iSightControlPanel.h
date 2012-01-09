@@ -29,11 +29,14 @@
 @interface iSightControlPanel : NSObject {
 	IBOutlet NSTextField* lbl;
 	IBOutlet QTCaptureView *captureView;
+
 	IBOutlet NSSlider* brightnessSlider;
+	IBOutlet NSSlider* contrastSlider;
 
 	QTCaptureDeviceInput       *captureDeviceInput;
 }
 
-- (IBAction)setSlider:(id)sender;
+- (IBAction)setBrightness:(id)sender;
+- (IBAction)setContrast:(id)sender;
 
 @end
