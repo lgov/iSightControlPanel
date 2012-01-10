@@ -23,7 +23,8 @@
 /** Types used to request and update control values. **/
 typedef enum {    /* these values have a meaning, see CameraController.m */
 	CamPar_Brightness = 0,
-	CamPar_Contrast = 1
+	CamPar_Contrast = 1,
+	CamPar_Saturation = 2,
 } CameraControl_t;
 
 typedef enum {

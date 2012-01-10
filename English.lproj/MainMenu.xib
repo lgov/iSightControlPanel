@@ -1410,7 +1410,7 @@
 						<object class="NSSlider" id="897220423">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{560, 303}, {163, 21}}</string>
+							<string key="NSFrame">{{560, 304}, {163, 21}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSSliderCell" key="NSCell" id="797109054">
@@ -1431,7 +1431,7 @@
 						<object class="NSSlider" id="490124778">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{560, 275}, {163, 21}}</string>
+							<string key="NSFrame">{{560, 279}, {163, 21}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSSliderCell" key="NSCell" id="44446052">
@@ -1439,6 +1439,27 @@
 								<int key="NSCellFlags2">0</int>
 								<string key="NSContents"/>
 								<reference key="NSControlView" ref="490124778"/>
+								<double key="NSMaxValue">100</double>
+								<double key="NSMinValue">0.0</double>
+								<double key="NSValue">34.859154929577464</double>
+								<double key="NSAltIncValue">0.0</double>
+								<int key="NSNumberOfTickMarks">0</int>
+								<int key="NSTickMarkPosition">1</int>
+								<bool key="NSAllowsTickMarkValuesOnly">NO</bool>
+								<bool key="NSVertical">NO</bool>
+							</object>
+						</object>
+						<object class="NSSlider" id="899368540">
+							<reference key="NSNextResponder" ref="439893737"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{560, 254}, {163, 21}}</string>
+							<reference key="NSSuperview" ref="439893737"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSSliderCell" key="NSCell" id="1398391">
+								<int key="NSCellFlags">-2080244224</int>
+								<int key="NSCellFlags2">0</int>
+								<string key="NSContents"/>
+								<reference key="NSControlView" ref="899368540"/>
 								<double key="NSMaxValue">100</double>
 								<double key="NSMinValue">0.0</double>
 								<double key="NSValue">34.859154929577464</double>
@@ -1468,7 +1489,7 @@
 						<object class="NSTextField" id="132012030">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{486, 277}, {71, 17}}</string>
+							<string key="NSFrame">{{486, 282}, {63, 17}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="530925369">
@@ -1477,6 +1498,22 @@
 								<string key="NSContents">Contrast:</string>
 								<reference key="NSSupport" ref="858998454"/>
 								<reference key="NSControlView" ref="132012030"/>
+								<reference key="NSBackgroundColor" ref="438013911"/>
+								<reference key="NSTextColor" ref="372093715"/>
+							</object>
+						</object>
+						<object class="NSTextField" id="293302558">
+							<reference key="NSNextResponder" ref="439893737"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{486, 257}, {73, 17}}</string>
+							<reference key="NSSuperview" ref="439893737"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSTextFieldCell" key="NSCell" id="435335292">
+								<int key="NSCellFlags">68288064</int>
+								<int key="NSCellFlags2">272630784</int>
+								<string key="NSContents">Saturation:</string>
+								<reference key="NSSupport" ref="858998454"/>
+								<reference key="NSControlView" ref="293302558"/>
 								<reference key="NSBackgroundColor" ref="438013911"/>
 								<reference key="NSTextColor" ref="372093715"/>
 							</object>
@@ -2226,6 +2263,22 @@
 					</object>
 					<int key="connectionID">579</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">saturationSlider</string>
+						<reference key="source" ref="795739336"/>
+						<reference key="destination" ref="899368540"/>
+					</object>
+					<int key="connectionID">590</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setSaturation:</string>
+						<reference key="source" ref="795739336"/>
+						<reference key="destination" ref="899368540"/>
+					</object>
+					<int key="connectionID">591</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2790,6 +2843,8 @@
 							<reference ref="374225373"/>
 							<reference ref="132012030"/>
 							<reference ref="490124778"/>
+							<reference ref="899368540"/>
+							<reference ref="293302558"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -3359,6 +3414,34 @@
 						<reference key="object" ref="44446052"/>
 						<reference key="parent" ref="490124778"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">580</int>
+						<reference key="object" ref="293302558"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="435335292"/>
+						</object>
+						<reference key="parent" ref="439893737"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">581</int>
+						<reference key="object" ref="435335292"/>
+						<reference key="parent" ref="293302558"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">582</int>
+						<reference key="object" ref="899368540"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1398391"/>
+						</object>
+						<reference key="parent" ref="439893737"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">583</int>
+						<reference key="object" ref="1398391"/>
+						<reference key="parent" ref="899368540"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -3610,6 +3693,12 @@
 					<string>576.IBPluginDependency</string>
 					<string>58.IBPluginDependency</string>
 					<string>58.ImportedFromIB2</string>
+					<string>580.IBPluginDependency</string>
+					<string>580.IBViewBoundsToFrameTransform</string>
+					<string>581.IBPluginDependency</string>
+					<string>582.IBPluginDependency</string>
+					<string>582.IBViewBoundsToFrameTransform</string>
+					<string>583.IBPluginDependency</string>
 					<string>72.IBPluginDependency</string>
 					<string>72.ImportedFromIB2</string>
 					<string>73.IBPluginDependency</string>
@@ -3894,7 +3983,19 @@
 					<string>{{23, 794}, {245, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABEP8AAxDQAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABD8wAAw5IAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABEDAAAw5MAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABD8wAAw4WAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3902,8 +4003,6 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABEQkAAxC5AAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3948,7 +4047,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">579</int>
+			<int key="maxID">591</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3962,9 +4061,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>setBrightness:</string>
 							<string>setContrast:</string>
+							<string>setSaturation:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -3975,6 +4076,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>setBrightness:</string>
 							<string>setContrast:</string>
+							<string>setSaturation:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3984,6 +4086,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">setContrast:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">setSaturation:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>
@@ -3996,6 +4102,7 @@
 							<string>captureView</string>
 							<string>contrastSlider</string>
 							<string>lbl</string>
+							<string>saturationSlider</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4003,6 +4110,7 @@
 							<string>QTCaptureView</string>
 							<string>NSSlider</string>
 							<string>NSTextField</string>
+							<string>NSSlider</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -4013,6 +4121,7 @@
 							<string>captureView</string>
 							<string>contrastSlider</string>
 							<string>lbl</string>
+							<string>saturationSlider</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4031,6 +4140,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">lbl</string>
 								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">saturationSlider</string>
+								<string key="candidateClassName">NSSlider</string>
 							</object>
 						</object>
 					</object>

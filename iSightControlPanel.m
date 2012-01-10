@@ -85,6 +85,7 @@ BOOL cameraConfigured = FALSE;
 	/* Initialize ranged controls. */
 	[self initSlider:brightnessSlider control:CamPar_Brightness];
 	[self initSlider:contrastSlider control:CamPar_Contrast];
+	[self initSlider:saturationSlider control:CamPar_Saturation];
 
 	[lbl setStringValue:@"Initialized"];
 }
@@ -101,6 +102,13 @@ BOOL cameraConfigured = FALSE;
 	int contrast = [contrastSlider intValue];
 	[cameraCtrl setValue:contrast
 				 control:CamPar_Contrast];
+}
+
+- (IBAction)setSaturation:(id)sender
+{
+	int saturation = [saturationSlider intValue];
+	[cameraCtrl setValue:saturation
+				 control:CamPar_Saturation];
 }
 
 - (void)windowWillClose:(NSNotification *)notification

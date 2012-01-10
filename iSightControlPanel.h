@@ -32,11 +32,13 @@
 
 	IBOutlet NSSlider* brightnessSlider;
 	IBOutlet NSSlider* contrastSlider;
+	IBOutlet NSSlider* saturationSlider;
 
 	QTCaptureDeviceInput       *captureDeviceInput;
 }
 
 - (IBAction)setBrightness:(id)sender;
 - (IBAction)setContrast:(id)sender;
+- (IBAction)setSaturation:(id)sender;
 
 @end

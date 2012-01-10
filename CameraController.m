@@ -64,6 +64,18 @@ struct CameraControlDef {
 		2,
 		CamPar_UnsignedNr,
 	},
+    {
+		CamPar_Saturation,
+		UVC_VC_PROCESSING_UNIT,
+		UVC_PU_SATURATION_CONTROL,
+		2,
+		CamPar_UnsignedNr,
+	},
+
+	/* iSight doesn't support:
+		Gain
+	    Hue: Get Min. and Max works, Set Cur stalls.
+	 */
 };
 
 /* Send GET_CUR,GET_MIN;GET_MAX,GET_RES,GET_LEN,GET_INFO or GET_DEF request to
