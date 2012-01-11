@@ -71,6 +71,13 @@ struct CameraControlDef {
 		2,
 		CamPar_UnsignedNr,
 	},
+	{
+		CamPar_Sharpness,
+		UVC_VC_PROCESSING_UNIT,
+		UVC_PU_SHARPNESS_CONTROL,
+		2,
+		CamPar_UnsignedNr,
+	},
     {
 		CamPar_AutoExposureMode,
 		UVC_VC_INPUT_TERMINAL,

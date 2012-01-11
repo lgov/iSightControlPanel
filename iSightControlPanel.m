@@ -158,6 +158,7 @@ BOOL cameraConfigured = FALSE;
 	[self initSlider:brightnessSlider control:CamPar_Brightness];
 	[self initSlider:contrastSlider control:CamPar_Contrast];
 	[self initSlider:saturationSlider control:CamPar_Saturation];
+	[self initSlider:sharpnessSlider control:CamPar_Sharpness];
 	[self initExposureSlider:exposureSlider control:CamPar_ExposureAbs];
 
 	[self initExposureModePopup:exposureModePopup];
@@ -184,6 +185,13 @@ BOOL cameraConfigured = FALSE;
 	int saturation = [saturationSlider intValue];
 	[cameraCtrl setValue:saturation
 				 control:CamPar_Saturation];
+}
+
+- (IBAction)setSharpness:(id)sender
+{
+	int sharpness = [sharpnessSlider intValue];
+	[cameraCtrl setValue:sharpness
+				 control:CamPar_Sharpness];
 }
 
 - (IBAction)setExposure:(id)sender
