@@ -28,11 +28,19 @@ QTCaptureSession           *captureSession;
 CameraController *cameraCtrl;
 BOOL cameraConfigured = FALSE;
 
+// Setup methods
+- (id)init
+{
+    self = [super init];
+    [self initExposureModes];
+    return self;
+}
+
 /**
  * initSlider: initiate the slider with the Minimum, Maximum and Current value
  *  for the selected control (brightness, contrast...).
  */
-- (void) initSlider:(NSSlider *)slider control:(CameraControl_t)control
+- (long) initSlider:(NSSlider *)slider control:(CameraControl_t)control
 {
 	long value;
 
@@ -42,6 +50,70 @@ BOOL cameraConfigured = FALSE;
 	[slider setMaxValue:value];
 	value = [cameraCtrl getValue:control selector:CamPar_Current];
 	[slider setIntValue:value];
+
+	return value;
+}
+
+- (void) initExposureSlider:(NSSlider *)slider control:(CameraControl_t)control
+{
+	long value;
+
+	value = [cameraCtrl getValue:CamPar_AutoExposureMode selector:CamPar_Current];
+	if (value == CamPar_AEAuto)
+		[slider setEnabled:FALSE];
+	else
+	{
+		[slider setEnabled:TRUE];
+		/* Seems that when switch from Shutter Priority to Manual the GET_CUR
+		   value is changed, but the camera itself still uses the original value. */
+		long exposure = [self initSlider:slider control:CamPar_ExposureAbs];
+		[cameraCtrl setValue:exposure control:CamPar_ExposureAbs];
+	}
+}
+
+/**
+ * initExposureModePopup: select the current exposure mode.
+ */
+- (void) initExposureModePopup:(NSPopUpButton *)popup
+{
+	long value;
+
+	value = [cameraCtrl getValue:CamPar_AutoExposureMode selector:CamPar_Current];
+	for (ExposureMode *em in exposureModes)
+	{
+		if ([em mode] == value)
+		{
+			[self willChangeValueForKey: @"selectedExposureMode"];
+			selectedExposureMode = em;
+			[self didChangeValueForKey: @"selectedExposureMode"];
+			break;
+		}
+	}
+}
+
+/**
+ * initExposureModes: initiate the exposure popup with the list of available
+ * modes.
+ */
+- (void) initExposureModes
+{
+	ExposureMode* mode;
+
+	exposureModes =[[NSMutableArray alloc] init];
+	mode = [[ExposureMode alloc] set:CamPar_AEAuto modeName:@"Auto mode"];
+	[exposureModes addObject:mode];
+	mode = [[ExposureMode alloc] set:CamPar_AEManual modeName:@"Manual mode"];
+	[exposureModes addObject:mode];
+	mode = [[ExposureMode alloc] set:CamPar_AEShutterPriority modeName:@"Shutter Priority Mode"];
+	[exposureModes addObject:mode];
+
+	/* Aperture priority mode not supported by iSight.
+	   If support for other camera's is added: the supported modes can be queried
+	   with the CamPar_Resolution selector. */
+/*
+	mode = [[ExposureMode alloc] set:CamPar_AEAperturePriority modeName:@"Aperture Priority Mode"];
+	[exposureModes addObject:mode];
+ */
 }
 
 - (void) awakeFromNib
@@ -86,6 +158,9 @@ BOOL cameraConfigured = FALSE;
 	[self initSlider:brightnessSlider control:CamPar_Brightness];
 	[self initSlider:contrastSlider control:CamPar_Contrast];
 	[self initSlider:saturationSlider control:CamPar_Saturation];
+	[self initExposureSlider:exposureSlider control:CamPar_ExposureAbs];
+
+	[self initExposureModePopup:exposureModePopup];
 
 	[lbl setStringValue:@"Initialized"];
 }
@@ -109,6 +184,21 @@ BOOL cameraConfigured = FALSE;
 	int saturation = [saturationSlider intValue];
 	[cameraCtrl setValue:saturation
 				 control:CamPar_Saturation];
+}
+
+- (IBAction)setExposure:(id)sender
+{
+	int exposure = [exposureSlider intValue];
+	[cameraCtrl setValue:exposure
+				 control:CamPar_ExposureAbs];
+}
+
+- (IBAction)setExposureMode:(id)sender
+{
+	CameraAutoExposureMode_t mode = [selectedExposureMode mode];
+	[cameraCtrl setValue:mode
+				 control:CamPar_AutoExposureMode];
+	[self initExposureSlider:exposureSlider control:CamPar_ExposureAbs];
 }
 
 - (void)windowWillClose:(NSNotification *)notification

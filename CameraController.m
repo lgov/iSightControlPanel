@@ -71,6 +71,20 @@ struct CameraControlDef {
 		2,
 		CamPar_UnsignedNr,
 	},
+    {
+		CamPar_AutoExposureMode,
+		UVC_VC_INPUT_TERMINAL,
+		UVC_CT_AE_MODE_CONTROL,
+		1,
+		CamPar_UnsignedNr,
+	},
+	{
+		CamPar_ExposureAbs,
+		UVC_VC_INPUT_TERMINAL,
+		UVC_CT_EXPOSURE_TIME_ABSOLUTE_CONTROL,
+		4,
+		CamPar_UnsignedNr,
+	},
 
 	/* iSight doesn't support:
 		Gain

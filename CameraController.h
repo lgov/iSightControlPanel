@@ -20,11 +20,28 @@
  */
 
 
+/** iSight supported controls:
+
+	Brightness
+	Contrast
+	Saturation
+	Sharpness
+	Gamma
+	White Balance Temperature
+	White Balance Temperature, Auto
+	Backlight Compensation
+	Power Line Frequency
+	Auto Exposure Mode
+	Exposure Time (Absolute)
+	Hue	(?)
+
 /** Types used to request and update control values. **/
 typedef enum {    /* these values have a meaning, see CameraController.m */
 	CamPar_Brightness = 0,
 	CamPar_Contrast = 1,
 	CamPar_Saturation = 2,
+	CamPar_AutoExposureMode = 3,
+	CamPar_ExposureAbs = 4,
 } CameraControl_t;
 
 typedef enum {
@@ -35,6 +52,12 @@ typedef enum {
 	CamPar_Resolution
 } CameraSelector_t;
 
+typedef enum {
+	CamPar_AEManual = 0x01,
+	CamPar_AEAuto = 0x02,
+	CamPar_AEShutterPriority = 0x04,
+	CamPar_AEAperturePriority = 0x08, /* Not supported by iSight */
+} CameraAutoExposureMode_t;
 @interface CameraController : NSObject {
 
 }

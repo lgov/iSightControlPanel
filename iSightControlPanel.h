@@ -23,6 +23,8 @@
 #import <Cocoa/Cocoa.h>
 #import <QTKit/QTKit.h>
 
+#import "ExposureMode.h"
+
 #define kVendorApple 0x05ac
 #define kProductiSight 0x8507
 
@@ -34,11 +36,22 @@
 	IBOutlet NSSlider* contrastSlider;
 	IBOutlet NSSlider* saturationSlider;
 
-	QTCaptureDeviceInput       *captureDeviceInput;
+	IBOutlet NSSlider* exposureSlider;
+
+	IBOutlet NSPopUpButton* exposureModePopup;
+	NSMutableArray *exposureModes;
+	ExposureMode* selectedExposureMode;
+
+	QTCaptureDeviceInput* captureDeviceInput;
 }
 
+
+
+- (void) initExposureModes;
 - (IBAction)setBrightness:(id)sender;
 - (IBAction)setContrast:(id)sender;
 - (IBAction)setSaturation:(id)sender;
+- (IBAction)setExposure:(id)sender;
+- (IBAction)setExposureMode:(id)sender;
 
 @end
