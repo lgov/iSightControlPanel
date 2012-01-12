@@ -92,6 +92,13 @@ struct CameraControlDef {
 		4,
 		CamPar_UnsignedNr,
 	},
+	{
+		CamPar_Gamma,
+		UVC_VC_PROCESSING_UNIT,
+		UVC_PU_GAMMA_CONTROL,
+		2,
+		CamPar_UnsignedNr,
+	},
 
 	/* iSight doesn't support:
 		Gain

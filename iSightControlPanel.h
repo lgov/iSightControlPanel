@@ -36,6 +36,7 @@
 	IBOutlet NSSlider* contrastSlider;
 	IBOutlet NSSlider* saturationSlider;
 	IBOutlet NSSlider* sharpnessSlider;
+	IBOutlet NSSlider* gammaSlider;
 
 	IBOutlet NSSlider* exposureSlider;
 
@@ -55,5 +56,6 @@
 - (IBAction)setSharpness:(id)sender;
 - (IBAction)setExposure:(id)sender;
 - (IBAction)setExposureMode:(id)sender;
+- (IBAction)setGamma:(id)sender;
 
 @end

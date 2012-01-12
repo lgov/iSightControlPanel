@@ -42,16 +42,23 @@ BOOL cameraConfigured = FALSE;
  */
 - (long) initSlider:(NSSlider *)slider control:(CameraControl_t)control
 {
-	long value;
-
-	value = [cameraCtrl getValue:control selector:CamPar_Min];
-	[slider setMinValue:value];
-	value = [cameraCtrl getValue:control selector:CamPar_Max];
-	[slider setMaxValue:value];
-	value = [cameraCtrl getValue:control selector:CamPar_Current];
-	[slider setIntValue:value];
-
-	return value;
+	long min = [cameraCtrl getValue:control selector:CamPar_Min];
+	[slider setMinValue:min];
+	long max = [cameraCtrl getValue:control selector:CamPar_Max];
+	[slider setMaxValue:max];
+	long current = [cameraCtrl getValue:control selector:CamPar_Current];
+	[slider setIntValue:current];
+	long resolution = [cameraCtrl getValue:control selector:CamPar_Resolution];
+	if (resolution > 1)
+	{
+		[slider setAltIncrementValue:resolution];
+		[slider setAllowsTickMarkValuesOnly:TRUE];
+		long nrOfTicks = 1 + /* for minimum */
+		                 (max - min) / resolution; /* nr of times resolution
+													fits in total range */
+		[slider setNumberOfTickMarks:nrOfTicks];
+	}
+	return current;
 }
 
 - (void) initExposureSlider:(NSSlider *)slider control:(CameraControl_t)control
@@ -159,6 +166,7 @@ BOOL cameraConfigured = FALSE;
 	[self initSlider:contrastSlider control:CamPar_Contrast];
 	[self initSlider:saturationSlider control:CamPar_Saturation];
 	[self initSlider:sharpnessSlider control:CamPar_Sharpness];
+	[self initSlider:gammaSlider control:CamPar_Gamma];
 	[self initExposureSlider:exposureSlider control:CamPar_ExposureAbs];
 
 	[self initExposureModePopup:exposureModePopup];
@@ -193,6 +201,14 @@ BOOL cameraConfigured = FALSE;
 	[cameraCtrl setValue:sharpness
 				 control:CamPar_Sharpness];
 }
+
+- (IBAction)setGamma:(id)sender
+{
+	int gamma = [gammaSlider intValue];
+	[cameraCtrl setValue:gamma
+				 control:CamPar_Gamma];
+}
+
 
 - (IBAction)setExposure:(id)sender
 {
