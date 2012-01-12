@@ -99,7 +99,20 @@ struct CameraControlDef {
 		2,
 		CamPar_UnsignedNr,
 	},
-
+	{
+		CamPar_AutoWhiteBalanceTemp,
+		UVC_VC_PROCESSING_UNIT,
+		UVC_PU_WHITE_BALANCE_TEMPERATURE_AUTO_CONTROL,
+		1,
+		CamPar_UnsignedNr,
+	},
+	{
+		CamPar_WhiteBalanceTemp,
+		UVC_VC_PROCESSING_UNIT,
+		UVC_PU_WHITE_BALANCE_TEMPERATURE_CONTROL,
+		2,
+		CamPar_UnsignedNr,
+	},
 	/* iSight doesn't support:
 		Gain
 	    Hue: Get Min. and Max works, Set Cur stalls.

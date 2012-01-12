@@ -36,6 +36,15 @@ BOOL cameraConfigured = FALSE;
     return self;
 }
 
+- (long) initCheckbox:(NSButton *)checkbox control:(CameraControl_t)control
+{
+	long current = [cameraCtrl getValue:control selector:CamPar_Current];
+
+	[checkbox setState:current];
+
+	return current;
+}
+
 /**
  * initSlider: initiate the slider with the Minimum, Maximum and Current value
  *  for the selected control (brightness, contrast...).
@@ -96,6 +105,21 @@ BOOL cameraConfigured = FALSE;
 			break;
 		}
 	}
+}
+
+- (void) initWhiteBalanceTempSlider:(NSSlider *)slider control:(CameraControl_t)control
+{
+	long value;
+
+	value = [cameraCtrl getValue:CamPar_AutoWhiteBalanceTemp selector:CamPar_Current];
+	if (value)
+		[slider setEnabled:FALSE];
+	else
+	{
+		[slider setEnabled:TRUE];
+		[self initSlider:slider control:control];
+	}
+
 }
 
 /**
@@ -168,6 +192,8 @@ BOOL cameraConfigured = FALSE;
 	[self initSlider:sharpnessSlider control:CamPar_Sharpness];
 	[self initSlider:gammaSlider control:CamPar_Gamma];
 	[self initExposureSlider:exposureSlider control:CamPar_ExposureAbs];
+	[self initWhiteBalanceTempSlider:whiteBalanceTempSlider control:CamPar_WhiteBalanceTemp];
+	[self initCheckbox:whiteBalanceTempAutoCheckbox control:CamPar_AutoWhiteBalanceTemp];
 
 	[self initExposureModePopup:exposureModePopup];
 
@@ -223,6 +249,21 @@ BOOL cameraConfigured = FALSE;
 	[cameraCtrl setValue:mode
 				 control:CamPar_AutoExposureMode];
 	[self initExposureSlider:exposureSlider control:CamPar_ExposureAbs];
+}
+
+- (IBAction)setWhiteBalanceTemp:(id)sender;
+{
+	long whiteBalance = [sender intValue];
+	[cameraCtrl setValue:whiteBalance
+				 control:CamPar_WhiteBalanceTemp];
+}
+
+- (IBAction)setWhiteBalanceTempAuto:(id)sender
+{
+	Boolean wbAuto = (whiteBalanceTempAutoCheckbox.state == NSOnState);
+	[cameraCtrl setValue:wbAuto
+				 control:CamPar_AutoWhiteBalanceTemp];
+	[self initWhiteBalanceTempSlider:whiteBalanceTempSlider control:CamPar_WhiteBalanceTemp];
 }
 
 - (void)windowWillClose:(NSNotification *)notification

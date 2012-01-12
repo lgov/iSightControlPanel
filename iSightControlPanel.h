@@ -37,17 +37,15 @@
 	IBOutlet NSSlider* saturationSlider;
 	IBOutlet NSSlider* sharpnessSlider;
 	IBOutlet NSSlider* gammaSlider;
-
+	IBOutlet NSSlider* whiteBalanceTempSlider;
+	IBOutlet NSButton* whiteBalanceTempAutoCheckbox;
 	IBOutlet NSSlider* exposureSlider;
-
 	IBOutlet NSPopUpButton* exposureModePopup;
 	NSMutableArray *exposureModes;
 	ExposureMode* selectedExposureMode;
 
 	QTCaptureDeviceInput* captureDeviceInput;
 }
-
-
 
 - (void) initExposureModes;
 - (IBAction)setBrightness:(id)sender;
@@ -57,5 +55,7 @@
 - (IBAction)setExposure:(id)sender;
 - (IBAction)setExposureMode:(id)sender;
 - (IBAction)setGamma:(id)sender;
+- (IBAction)setWhiteBalanceTemp:(id)sender;
+- (IBAction)setWhiteBalanceTempAuto:(id)sender;
 
 @end

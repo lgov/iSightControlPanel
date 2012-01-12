@@ -44,6 +44,8 @@ typedef enum {    /* these values have a meaning, see CameraController.m */
 	CamPar_AutoExposureMode = 4,
 	CamPar_ExposureAbs = 5,
 	CamPar_Gamma = 6,
+	CamPar_AutoWhiteBalanceTemp = 7,
+	CamPar_WhiteBalanceTemp = 8,
 } CameraControl_t;
 
 typedef enum {
